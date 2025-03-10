@@ -1,0 +1,103 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+
+    <!-- <link
+      rel="icon"
+      type="image/png"
+      sizes="32x32"
+      href="./images/iconName.png"
+    /> -->
+    <link rel="stylesheet" href="./style.css" />
+    <title>Card Details Form</title>
+  </head>
+  <body>
+    <div class="form-page">
+      <!-- Cards View -->
+      <section class="cards">
+        <img
+          src="./images/bg-main-desktop.png"
+          class="background-color"
+          alt="background-color"
+        />
+        <div class="card back-card">
+          <img src="./images/bg-card-back.png" alt="back-card" />
+          <p class="back-cvc" id="cardCvcDisplay">000</p>
+        </div>
+        <div class="card front-card">
+          <img src="./images/card-logo.svg" alt="card-logo" />
+          <p class="front-numbers" id="cardNumberDisplay">
+            0000 0000 0000 0000
+          </p>
+          <div class="card-name-date">
+            <p class="front-name" id="cardHolderDisplay">Name</p>
+            <p class="front-date" id="cardDateDisplay">
+              <span id="cardMonthDisplay">00</span>/<span id="cardYearDisplay"
+                >00</span
+              >
+            </p>
+          </div>
+        </div>
+      </section>
+
+      <!-- Card Info Form -->
+      <section class="form-card">
+        <form class="form" action="">
+          <div class="form-field">
+            <label for="">CARDHOLDER NAME</label>
+            <input
+              class="a"
+              id="cardHolder"
+              type="text"
+              placeholder="e.g. Jane Appleseed"
+              required
+            />
+          </div>
+          <div class="form-field">
+            <label for="">CARD NUMBER</label>
+            <input
+              id="cardNumber"
+              type="text"
+              placeholder="e.g. 1234 5678 9123 0000"
+            />
+          </div>
+          <div class="form-date-cvc">
+            <div class="form-field form-field-date">
+              <label for="">EXP. DATE (MM/YY)</label>
+              <div class="field-month-year">
+                <input id="cardMonth" type="text" placeholder="MM" required />
+                <input id="cardYear" type="text" placeholder="YY" required />
+              </div>
+            </div>
+            <div class="form-field">
+              <label for="">CVC</label>
+              <input id="cardCvc" type="text" placeholder="e.g. 123" required />
+            </div>
+          </div>
+          <button class="btn" id="submit" type="button">Confirm</button>
+        </form>
+      </section>
+
+      <!-- Completed Form State -->
+      <section class="form-completed">
+        <div class="completed-message">
+          <img src="./images/icon-complete.svg" alt="complete icon" />
+          <div class="description">
+            <h1>THANK YOU!</h1>
+            <p>We've added your card details</p>
+          </div>
+          <button class="btn" id="continue" type="button">Continue</button>
+        </div>
+      </section>
+      <div class="attributions">
+        <p>
+          Developed by
+          <a href="https://github.com/juanamador1009"> Juan Amador</a>
+        </p>
+      </div>
+    </div>
+    <script src="./index.js"></script>
+  </body>
+</html>

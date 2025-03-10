@@ -1,0 +1,11 @@
+# System files (to avoid OS generated files)
+.DS_Store
+Thumbs.db
+
+# Editor settings (if you use VS Code, WebStorm, etc.)
+.vscode/
+.idea/
+
+# Backup or temporary files
+*.log
+*.bak
