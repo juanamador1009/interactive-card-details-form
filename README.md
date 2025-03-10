@@ -19,11 +19,11 @@ This is an interactive form that allows users to enter card information and see 
 
 #### Desktop View
 
-![Desktop View](./images/desktop-view.png)
+![Desktop View](./design/desktop-view.png)
 
 #### Mobile View
 
-![Mobile View](./images/mobile-view.png)
+![Mobile View](./design/mobile-view.png)
 
 ## 🛠 Installation and Use
 
