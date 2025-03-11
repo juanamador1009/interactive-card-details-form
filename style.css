@@ -86,14 +86,22 @@
   font-size: var(--font-extra-bg);
 }
 .front-card .card-name-date {
+  min-width: 100%;
   display: flex;
   justify-content: space-between;
   align-items: end;
+  gap: 10px;
 }
 .front-card .front-name {
+  flex: 1;
   font-size: var(--font-md);
+  overflow: hidden;
+  white-space: nowrap;
+  text-overflow: ellipsis;
 }
 .front-card .front-date {
+  width: 20%;
+  max-width: 20%;
   font-size: var(--font-light-sm);
 }
 

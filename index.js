@@ -56,26 +56,28 @@ cardCvcInput.addEventListener("input", (event) => {
 
 // Error Field Message
 function errorMessageElement({ message, errorElement, errorElement2 }) {
-  const p = document.createElement("p");
-  p.textContent = message;
-  p.classList.add("hidden");
-  errorElement.insertAdjacentElement("afterend", p);
-  errorElement.classList.add("error-input");
-  errorElement2 && errorElement2.classList.add("error-input");
+  if (errorElement.nextElementSibling?.tagName !== "P") {
+    const p = document.createElement("p");
+    p.textContent = message;
+    p.classList.add("hidden");
+    errorElement.insertAdjacentElement("afterend", p);
+    errorElement.classList.add("error-input");
+    errorElement2 && errorElement2.classList.add("error-input");
 
-  setTimeout(() => {
-    p.classList.remove("hidden");
-    p.classList.add("visible");
-  }, 0);
-
-  setTimeout(() => {
-    p.classList.add("fade-out");
     setTimeout(() => {
-      errorElement.classList.remove("error-input");
-      errorElement2 && errorElement2.classList.remove("error-input");
-      p.parentNode.removeChild(p);
-    }, 500);
-  }, 5000);
+      p.classList.remove("hidden");
+      p.classList.add("visible");
+    }, 0);
+
+    setTimeout(() => {
+      p.classList.add("fade-out");
+      setTimeout(() => {
+        errorElement.classList.remove("error-input");
+        errorElement2 && errorElement2.classList.remove("error-input");
+        p.parentNode.removeChild(p);
+      }, 500);
+    }, 5000);
+  }
 }
 
 // Change View From Form to Completed
@@ -106,10 +108,7 @@ function changeView({ form, completed }) {
 
 // Check If Form Completed
 cardFormButton.addEventListener("click", () => {
-  if (
-    cardHolderInput.value.trim() === "" &&
-    cardHolderInput.nextElementSibling === null
-  ) {
+  if (cardHolderInput.value.trim() === "") {
     errorMessageElement({
       message: "Invalid Name",
       errorElement: cardHolderInput,
@@ -119,10 +118,7 @@ cardFormButton.addEventListener("click", () => {
     formCompleted = true;
   }
 
-  if (
-    (cardNumberInput.value === "" || cardNumberInput.value.length !== 19) &&
-    cardNumberInput.nextElementSibling === null
-  ) {
+  if (cardNumberInput.value.length !== 19) {
     errorMessageElement({
       message: "Invalid Number",
       errorElement: cardNumberInput,
@@ -132,22 +128,16 @@ cardFormButton.addEventListener("click", () => {
     formCompleted = true;
   }
 
-  if (
-    cardMonthInput.value === "" &&
-    cardYearInput.value === "" &&
-    cardYearInput.nextElementSibling === null
-  ) {
+  if (cardMonthInput.value === "" && cardYearInput.value === "") {
     errorMessageElement({
       message: "Can't be blank",
       errorElement: cardYearInput,
       errorElement2: cardMonthInput,
     });
+
     formCompleted = false;
   } else {
-    if (
-      cardMonthInput.value === "" &&
-      cardYearInput.nextElementSibling === null
-    ) {
+    if (cardMonthInput.value === "") {
       errorMessageElement({
         message: "Can't be blank",
         errorElement: cardMonthInput,
@@ -157,10 +147,7 @@ cardFormButton.addEventListener("click", () => {
       formCompleted = true;
     }
 
-    if (
-      cardYearInput.value === "" &&
-      cardYearInput.nextElementSibling === null
-    ) {
+    if (cardYearInput.value === "") {
       errorMessageElement({
         message: "Can't be blank",
         errorElement: cardYearInput,
@@ -171,7 +158,7 @@ cardFormButton.addEventListener("click", () => {
     }
   }
 
-  if (cardCvcInput.value === "" && cardCvcInput.nextElementSibling === null) {
+  if (cardCvcInput.value === "") {
     errorMessageElement({
       message: "Invalid CVC",
       errorElement: cardCvcInput,
@@ -181,7 +168,16 @@ cardFormButton.addEventListener("click", () => {
     formCompleted = true;
   }
 
-  formCompleted ? changeView({ form: false, completed: true }) : null;
+  // Check If Form Fields Filled
+  if (
+    cardHolderInput.value !== "" &&
+    cardNumberInput.value.length === 19 &&
+    cardMonthInput.value !== "" &&
+    cardYearInput.value !== "" &&
+    cardCvcInput.value !== ""
+  ) {
+    changeView({ form: false, completed: true });
+  }
 });
 
 // Continue After Form Completed
